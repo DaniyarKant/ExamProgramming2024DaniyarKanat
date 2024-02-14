@@ -36,5 +36,10 @@ namespace Geometry
         void ReflectY();
     }
 
-   
+    public enum PointColour
+    {
+        Red,
+        Green,
+        Blue
+    }
 }
