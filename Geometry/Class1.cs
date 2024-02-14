@@ -6,21 +6,40 @@ using System.Threading.Tasks;
 
 namespace Geometry
 {
-    public class Point
+    public class Point : IReflectable
     {
-        public decimal X { get; }
-        public decimal Y { get; }
-
-        public Point(decimal x)
-        {
-            X = x;
-            Y = 0;
-        }
+        public decimal X { get; private set; }
+        public decimal Y { get; private set; }
 
         public Point(decimal x, decimal y)
         {
             X = x;
             Y = y;
         }
+
+        public Point(decimal x) : this(x, 0) { }
+
+        public void ReflectX()
+        {
+            X = -X;
+        }
+
+        public void ReflectY()
+        {
+            Y = -Y;
+        }
+    }
+
+    public interface IReflectable
+    {
+        void ReflectX();
+        void ReflectY();
+    }
+
+    public enum PointColour
+    {
+        Red,
+        Green,
+        Blue
     }
 }
