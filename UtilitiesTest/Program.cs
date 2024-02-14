@@ -12,6 +12,14 @@ namespace UtilitiesTest
         static void Main(string[] args)
         {
             Console.WriteLine(StringUtilities.LongWordsCount("Marcin Jagiela"));
+            Console.WriteLine(StringUtilities.LongWordsCount("The lord of the rings"));
+
+            Console.WriteLine(StringUtilities.ToSpinalCase("Marcin Jagiela"));
+            Console.WriteLine(StringUtilities.ToSpinalCase("the LorD OF thE Rings"));
+
+            Console.WriteLine(StringUtilities.ToPascalCase("marcin jagiela"));
+            Console.WriteLine(StringUtilities.ToPascalCase("the LorD OF thE Rings"));
+
             Console.ReadKey();
         }
     }
