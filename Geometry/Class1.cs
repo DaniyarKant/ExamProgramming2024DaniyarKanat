@@ -8,8 +8,8 @@ namespace Geometry
 {
     public class Point : IReflectable
     {
-        public decimal X { get; private set; }
-        public decimal Y { get; private set; }
+        public decimal X;
+        public decimal Y;
 
         public Point(decimal x, decimal y)
         {
@@ -28,6 +28,13 @@ namespace Geometry
         {
             Y = -Y;
         }
+
+        public override string ToString()
+        {
+            return $"({X},{Y})";
+        }
+
+        public virtual bool IsOnAxis => X == 0 || Y == 0;
     }
 
     public interface IReflectable
@@ -51,5 +58,43 @@ namespace Geometry
         {
             Colour = colour;
         }
+
+        public void ChangeColour(PointColour newColour)
+        {
+            Colour = newColour;
+        }
+
+        public void NextColour()
+        {
+            Colour = (PointColour)(((int)Colour + 1) % Enum.GetNames(typeof(PointColour)).Length);
+        }
+
+        public void Normalize()
+        {
+            decimal magnitude = (decimal)Math.Sqrt((double)(X * X + Y * Y));
+            if (magnitude != 0)
+            {
+                X /= magnitude;
+                Y /= magnitude;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"({X},{Y})";
+        }
+
+        public void Add(Point point)
+        {
+            X += point.X;
+            Y += point.Y;
+        }
+
+        public static Point Add(Point point1, Point point2)
+        {
+            return new Point(point1.X + point2.X, point1.Y + point2.Y);
+        }
+
+        public override bool IsOnAxis => (X == 0 || Y == 0) && Colour == PointColour.Blue;
     }
 }
