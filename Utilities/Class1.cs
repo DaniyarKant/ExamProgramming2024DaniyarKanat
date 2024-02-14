@@ -21,5 +21,20 @@ namespace Utilities
             }
             return count;
         }
+
+        public static string ToSpinalCase(string input)
+        {
+            string[] words = input.Split(' ');
+            StringBuilder result = new StringBuilder();
+            foreach (string word in words)
+            {
+                if (result.Length > 0)
+                {
+                    result.Append("-");
+                }
+                result.Append(word.ToLower());
+            }
+            return result.ToString();
+        }
     }
 }
