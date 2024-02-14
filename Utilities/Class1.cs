@@ -36,5 +36,20 @@ namespace Utilities
             }
             return result.ToString();
         }
+
+        public static string ToPascalCase(this string input)
+        {
+            string[] words = input.Split(' ');
+            StringBuilder result = new StringBuilder();
+            foreach (string word in words)
+            {
+                if (word.Length > 0)
+                {
+                    result.Append(char.ToUpper(word[0]));
+                    result.Append(word.Substring(1).ToLower());
+                }
+            }
+            return result.ToString();
+        }
     }
 }
